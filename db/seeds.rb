@@ -5,3 +5,23 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+tables = ActiveRecord::Base.connection.tables - ['schema_migrations']
+
+tables.each do |table|
+  ActiveRecord::Base.connection.execute "DELETE FROM `#{table}`"
+  ActiveRecord::Base.connection.execute "DELETE FROM sqlite_sequence WHERE name='#{table}'"
+end
+
+
+airports = []
+airports[0] = Airport.create(code: 'SAN', town: "San Diego, SA")
+airports[1] = Airport.create(code: 'PIT', town: "Pittsburgh, PI")
+airports[2] = Airport.create(code: 'DTW', town: "Detroit, DT")
+airports[3] = Airport.create(code: 'JFK', town: "New York, NY")
+airports[4] = Airport.create(code: 'SFO', town: "San Francisco, SF")
+airports[5] = Airport.create(code: 'ORD', town: "Chicago, CH")
+airports[6] = Airport.create(code: 'SLC', town: "Salt Lake City, SL")
+airports[7] = Airport.create(code: 'DFW', town: "Dallas, DA")
+airports[8] = Airport.create(code: 'SEA', town: "Seatle, SE")
+airports[9] = Airport.create(code: 'BOS', town: "Boston, BO")
