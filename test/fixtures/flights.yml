@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_id: 
+  finish_id: 
+  departure_date: 2021-08-03
+  departure_time: 2021-08-03 00:05:42
+  flight_duration: 1
+
+two:
+  start_id: 
+  finish_id: 
+  departure_date: 2021-08-03
+  departure_time: 2021-08-03 00:05:42
+  flight_duration: 1
