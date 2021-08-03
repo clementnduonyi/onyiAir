@@ -25,3 +25,31 @@ airports[6] = Airport.create(code: 'SLC', town: "Salt Lake City, SL")
 airports[7] = Airport.create(code: 'DFW', town: "Dallas, DA")
 airports[8] = Airport.create(code: 'SEA', town: "Seatle, SE")
 airports[9] = Airport.create(code: 'BOS', town: "Boston, BO")
+
+
+def flights_duration(start_airport, finish_airport)
+  DURATIONS[start_airport][finish_airport] || DURATIONS[finish_airport][start_airport]
+end
+
+
+def random_time 
+  Faker::Time.between(from: DateTime.now - 1, to: DateTime.now)
+end
+
+Date.new(2021, 10, 1)..(Date.new(2021, 10, 31)).each |date|
+    airports.each do |start_airport|
+        airports.each do |finish_airport|
+            if start_airport == finish_airport
+                next
+            else
+                3.times do |flight|
+                    flight = Flight.create!(departure_date: date,
+                                            departure_time: random_time,
+                                            start_airport: start_airport,
+                                            finish_airport: finish_airport,
+                                            flight_duration: flights_duration(start_airport.code, finish_airport.code))
+                end
+            end
+        end
+    end
+end
