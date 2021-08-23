@@ -1,0 +1,142 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ @import 'bulma';
+
+ 
+
+#section{
+    background-color: skyblue;
+}
+
+.search-section {
+    text-align: center;
+    width: 100%;
+}
+
+.search-section h1{
+    margin-top: 3rem;
+}
+
+.search-section p{
+    font-size: 3rem;
+    font-weight: 1000;
+    font-family: "Inter";
+    color: tomato;
+}
+
+.search-fileds{
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+    
+    
+}
+
+.control select{
+    width: 15rem;
+    
+}
+
+#seats-section{
+    background-color: steelblue;
+    margin-top: 2rem 0;
+}
+
+.slogan{
+    font-family: "Inter";
+    font-size: 15px;
+}
+
+/*Flight details*/
+
+.is-fullwidth{
+    
+    border: 1px solid white;
+}
+
+.header h2{
+    font-weight: 600;
+     margin: 1rem 0;
+}
+
+.header{
+    margin-top: 2rem;
+}
+
+.active-flights{
+    display: flex;
+    flex-wrap: wrap;
+   
+   
+}
+
+.flight_info{
+    border: 2px solid white;
+    padding: 1rem;
+   
+
+}
+
+.flight_info h2{
+    font-weight: 600;
+     margin: 0 0 1rem 0;
+     font-size: 1.5rem;
+}
+
+.flight-desc{
+    padding: 0 3rem 3rem 0;
+}
+
+.flight-id{
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+    font-family: "Inter";
+}
+
+.passenger-details {
+    line-height: 2;
+    padding: 1rem;
+
+    
+}
+.card-title{
+    display: flex;
+    margin: 3rem 0 1rem 0;
+    font-size: 25px;
+    font-weight: 600;
+    font-family: "Inter";
+   
+}
+
+.tag{
+    color: white;
+}
+
+.table-head{
+    background-color: slategray;
+}
+
+.flight-id{
+    color: skyblue;
+    text-transform: uppercase;
+}
+
+.has-text-left{
+    color: skyblue;
+    /*text-transform: uppercase;*/
+}
