@@ -1,0 +1,40 @@
+<% if @res %>    
+    <%= form_with url: new_booking_path, method: :get, action: :new do |f| %>
+        <div class="section">
+            <div class="container">
+                <div class="columns is-centered">
+                    <div>
+                        <table class="table is-striped is-bordered is fullwidth is-hovereable">
+                            <h1 class="title has-text-centered">Available Flights for your search</h1>
+                            <br />
+                            <thead>
+                                <tr>
+                                    <th>Select</th>
+                                    <th>Flights</th>
+                                    <th>From</th>
+                                    <th>To</th>
+                                    <th>Scheduled</th>
+                                    <th>Duration</th>
+                                </tr>
+                            <thead>
+                            <tbody> 
+                            <% @res.each do |flight| %>
+                                <tr>
+                                    <td><%= f.radio_button :flight_id, flight.id %></td>
+                                    <td><%= "ONY"+ flight.id.to_s %></td>
+                                    <td><%= flight.start.town %></td>
+                                    <td><%= flight.finish.town %></td>
+                                    <td><%= flight.departure_date %></td>
+                                    <td><%= flight.durations %></td>
+                                </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                    <%= f.hidden_field :passengers, :value => params[:flight][:passengers] %>
+                    <% f.hidden_field :flight_id, value: flight.id %>
+                    <%= f.submit "Book", class: "button is-link is-fullwidth"%>
+                </div>
+            </div>
+        </div>
+    <% end %>
+<% end %>

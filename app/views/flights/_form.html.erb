@@ -1,0 +1,42 @@
+<div class="search-section">
+  <p>Welcome to OnyiAirWays</p>
+  <i><span class="slogan"> Comfort redefind!</span></i>
+  <h1 class="title is-5">Search Flights</h1>
+<%= form_with(model: @flight, method: 'GET' ) do |f| %>
+    <div class="search-fileds">
+        <div class="field">
+            <div class="control">
+            <%= f.select(:start_id, @airports, include_blank: "Departing Airport") %>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+            <%= f.select(:finish_id, @airports, include_blank: "Destination Airport") %>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+            <%= f.select(:passengers, @passengers, include_blank: "Passengers")%>
+            </div>
+        </div>
+
+
+        <div class="field">
+            <div class="control">
+            <%= f.select(:departure_date, @flight_schedule, include_blank: "Flight date") %>
+            </div>
+        </div>
+
+        </div>
+
+        <div class="field">
+            <div class="control">
+            <%= f.submit "Search", class: "button is-info is-medium" %>
+            </div>
+        </div>
+    </div>
+<% end %> 
+</div>
+

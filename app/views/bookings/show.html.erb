@@ -1,0 +1,48 @@
+<h1 class="title has-text-centered is-bold">Booking Details</h1>
+<div class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-fullwidth">
+        <div class="passenger-details">
+          <div class="flight_info">
+            <h2>Flight Information</h2>
+            <p class="has-text-left"><%= "Flight - ONY" + @flight.id.to_s %></p>
+            <p>
+              <strong>Origin: </strong>
+              <%= @booking.flight.start.town %>
+            </p>
+            
+            <p>
+              <strong>Destination: </strong>
+            <%= @booking.flight.finish.town %>
+            </p>
+          
+            <p>
+              <strong>Date: </strong>
+            <%= @booking.flight.departure_date %>
+            </p>
+            
+            <p> 
+              <strong>Time: </strong>
+            <%= @booking.flight.flights_time %>
+            </p>
+            
+            <p>
+              <strong>Duration: </strong>
+              <%= @booking.flight.durations %>
+            <p>
+            <div class="header">
+              <h2>Passengers</h2>
+              <% @booking.passengers.each_with_index do |passenger, idx| %>
+                <%= idx += 1 %>.
+                <%= passenger.name + ' - ' + passenger.email  %> <br />
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <%= link_to 'Back', root_path, class: "button is-info is-outlined is-medium" %>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,21 @@
+<div class="container">
+    <nav class="panel">
+        <p class="panel-heading has-text-centered">Flight Summary</p>
+        <p class="panel-sub-heading has-text-centered"><%= "Flight " + "ONY"+ flight.id.to_s%>
+        <p class="panel-block">
+         <%="Origin: " + flight.start.town %>
+        </p>
+        <p class="panel-block">
+        <%="Destination: " + flight.finish.town %>
+        </p>
+        <p class="panel-block">
+        <%="Depature Date: " + flight.departure_date.strftime('%a %-b, %d %Y') %>
+        </p>
+        <p class="panel-block">
+        <%="Depature Time: " + flight.flights_time %>
+        </p>
+        <p class="panel-block">
+        <%="Flight duration: " + flight.durations %>
+        </p>
+    </nav>
+</div>
