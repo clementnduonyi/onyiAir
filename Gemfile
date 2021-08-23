@@ -6,7 +6,14 @@ ruby '3.0.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+# gem 'sqlite3', '~> 1.4'
+group :development, :test do
+ gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
+end
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -29,8 +36,10 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'faker', '~> 2.18'
+gem 'figaro', '~> 1.2.0'
 gem 'bulma-rails', '~> 0.9.1'
 gem 'gravatar_image_tag', '~> 1.2'
+gem 'simple_form', '~> 5.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -49,6 +58,8 @@ group :development do
   gem 'better_errors', '~> 2.9', '>= 2.9.1'
   gem 'guard', '~> 2.18'
   gem 'guard-livereload', '~> 2.5', '>= 2.5.2', require: false
+  gem "letter_opener", group: :development
+
 end
 
 group :test do
