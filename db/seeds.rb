@@ -6,12 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-tables = ActiveRecord::Base.connection.tables - ['schema_migrations']
+# tables = ActiveRecord::Base.connection.tables - ['schema_migrations']
 
-tables.each do |table|
-  ActiveRecord::Base.connection.execute "DELETE FROM `#{table}`"
-  ActiveRecord::Base.connection.execute "DELETE FROM sqlite_sequence WHERE name='#{table}'"
-end
+# tables.each do |table|
+  # ActiveRecord::Base.connection.execute "DELETE FROM `#{table}`"
+  # ActiveRecord::Base.connection.execute "DELETE FROM sqlite_sequence WHERE name='#{table}'"
+# end
 
 DURATIONS = {
   'SAN' => {
@@ -80,40 +80,51 @@ DURATIONS = {
   'PIT' => {}
 }
 
+ActiveRecord::Base.transaction do
+  Booking.destroy_all
+  Passenger.destroy_all
+  Flight.destroy_all
+  Airport.destroy_all
 
-airports = []
-airports[0] = Airport.create(code: 'SAN', town: "San Diego, SA")
-airports[1] = Airport.create(code: 'PIT', town: "Pittsburgh, PI")
-airports[2] = Airport.create(code: 'DTW', town: "Detroit, DT")
-airports[3] = Airport.create(code: 'JFK', town: "New York, NY")
-airports[4] = Airport.create(code: 'SFO', town: "San Francisco, SF")
-airports[5] = Airport.create(code: 'ORD', town: "Chicago, CH")
-airports[6] = Airport.create(code: 'SLC', town: "Salt Lake City, SL")
-airports[7] = Airport.create(code: 'DFW', town: "Dallas, DA")
-airports[8] = Airport.create(code: 'SEA', town: "Seatle, SE")
-airports[9] = Airport.create(code: 'BOS', town: "Boston, BO")
+  ActiveRecord::Base.connection.reset_pk_sequence!('bookings')
+  ActiveRecord::Base.connection.reset_pk_sequence!('passengers')
+  ActiveRecord::Base.connection.reset_pk_sequence!('flights')
+  ActiveRecord::Base.connection.reset_pk_sequence!('airports')
+
+  airports = []
+  airports[0] = Airport.create(code: 'SAN', town: "San Diego, SA")
+  airports[1] = Airport.create(code: 'PIT', town: "Pittsburgh, PI")
+  airports[2] = Airport.create(code: 'DTW', town: "Detroit, DT")
+  airports[3] = Airport.create(code: 'JFK', town: "New York, NY")
+  airports[4] = Airport.create(code: 'SFO', town: "San Francisco, SF")
+  airports[5] = Airport.create(code: 'ORD', town: "Chicago, CH")
+  airports[6] = Airport.create(code: 'SLC', town: "Salt Lake City, SL")
+  airports[7] = Airport.create(code: 'DFW', town: "Dallas, DA")
+  airports[8] = Airport.create(code: 'SEA', town: "Seatle, SE")
+  airports[9] = Airport.create(code: 'BOS', town: "Boston, BO")
 
 
-def flights_duration(start, finish)
-  DURATIONS[start][finish] || DURATIONS[finish][start]
-end
+  def flights_duration(start, finish)
+    DURATIONS[start][finish] || DURATIONS[finish][start]
+  end
 
 
-def random_time 
-  Faker::Time.between(from: DateTime.now - 1, to: DateTime.now)
-end
+  def random_time 
+    Faker::Time.between(from: DateTime.now - 1, to: DateTime.now)
+  end
 
-Date.new(2021, 10, 1).upto(Date.new(2021, 10, 31)).each do |date|
-    airports.each do |start|
-        airports.each do |finish|
-            next if start == finish
-            3.times {Flight.create(departure_date: date,
-                                   departure_time: random_time,
-                                   start: start,
-                                   finish: finish,
-                                   flight_duration: flights_duration(start.code, finish.code))
-            }
-                
-        end
-    end
+  Date.new(2021, 10, 1).upto(Date.new(2021, 10, 31)).each do |date|
+      airports.each do |start|
+          airports.each do |finish|
+              next if start == finish
+              3.times {Flight.create(departure_date: date,
+                                    departure_time: random_time,
+                                    start: start,
+                                    finish: finish,
+                                    flight_duration: flights_duration(start.code, finish.code))
+              }
+                  
+          end
+      end
+  end
 end
