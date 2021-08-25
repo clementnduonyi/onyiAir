@@ -126,7 +126,10 @@ Rails.application.configure do
     :domain         => 'murmuring-coast-52856.heroku.com',
     :authentication => :plain,
   }
+  
   ActionMailer::Base.delivery_method = :smtp
+
+  config.action_mailer.perform_deliveries = true
 
   config.action_mailer.default_url_options = { host: 'app226535834@heroku.com', protocol: 'https' }
 
