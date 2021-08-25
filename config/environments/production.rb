@@ -128,4 +128,6 @@ Rails.application.configure do
   }
   ActionMailer::Base.delivery_method = :smtp
 
+  config.action_mailer.default_url_options = { host: 'app226535834@heroku.com', protocol: 'https' }
+
 end
